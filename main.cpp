@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
 	
-	QString someString = "\n";
+	//QString someString = "\n";
 
     QString fStr1 = "C:/Users/mcorovic/Desktop/qt_projects/FilesTask01/file01.csv";
     QString fStr2 = "C:/Users/mcorovic/Desktop/qt_projects/FilesTask01/file02.csv";
