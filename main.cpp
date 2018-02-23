@@ -18,6 +18,8 @@ int main(int argc, char *argv[])
     QString fStr1 = "C:/Users/mcorovic/Desktop/qt_projects/FilesTask01/file01.csv";
     QString fStr2 = "C:/Users/mcorovic/Desktop/qt_projects/FilesTask01/file02.csv";
 
+	// komentar neki
+	
     QFile firstFile(fStr1);
     QFile secondFile(fStr2);
 
