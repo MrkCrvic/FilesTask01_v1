@@ -5,6 +5,15 @@ FileTwo::FileTwo()
 
 }
 
+FileTwo::FileTwo(QStringList &strList)
+{
+    this->csg = strList[0];
+    this->from = strList[1];
+    this->to = strList[2];
+    this->srv = strList[3];
+    this->typ = strList[4];
+}
+
 void FileTwo::setCSG(QString ccsg)
 {
     this->csg = ccsg;

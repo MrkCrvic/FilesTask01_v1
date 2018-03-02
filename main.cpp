@@ -6,9 +6,10 @@
 #include <QTextStream>
 #include <QVectorIterator>
 #include <QStringList>
+#include <memory>
 
-void FillFileOne(QStringList &strList, FileOne * ff1);
-void FillFileTwo(QStringList &strList, FileTwo * ff2);
+//void FillFileOne(QStringList &strList, FileOne * ff1);
+//void FillFileTwo(QStringList &strList, FileTwo * ff2);
 void WriteOutputFile(QVector<FileOne> & f1v, QVector<FileTwo> & f2v);
 
 int main(int argc, char *argv[])
@@ -20,8 +21,6 @@ int main(int argc, char *argv[])
     QString fStr1 = "C:/Users/mcorovic/Desktop/qt_projects/FilesTask01/file01.csv";
     QString fStr2 = "C:/Users/mcorovic/Desktop/qt_projects/FilesTask01/file02.csv";
 
-	// komentar neki
-	
     QFile firstFile(fStr1);
     QFile secondFile(fStr2);
 
@@ -47,8 +46,10 @@ int main(int argc, char *argv[])
             line = rf.readLine();
             strList = line.split(',');
             //qDebug() << strList[1];
-            FileOne * f1 = new FileOne();
-            FillFileOne(strList, f1);
+            std::unique_ptr<FileOne> f1(new FileOne(strList));
+
+            //FileOne * f1 = new FileOne(strList);
+            //FillFileOne(strList, f1);
             f1vect.append(*f1);
             //qDebug() << f1->getY();
         }
@@ -85,8 +86,10 @@ int main(int argc, char *argv[])
             line = rf.readLine();
             strList = line.split(',');
             //qDebug() << strList[1];
-            FileTwo * f2 = new FileTwo();
-            FillFileTwo(strList, f2);
+            std::unique_ptr<FileTwo> f2(new FileTwo(strList));
+
+            //FileTwo * f2 = new FileTwo(strList);
+            //FillFileTwo(strList, f2);
             f2vect.append(*f2);
             //qDebug() << f2->getFROM();
         }
@@ -103,28 +106,28 @@ int main(int argc, char *argv[])
     return a.exec();
 }
 
-void FillFileOne(QStringList &strList, FileOne * ff1)
-{
-    ff1->setCSG(strList[0]);
-    ff1->setX(strList[1].toDouble());
-    ff1->setY(strList[2].toDouble());
-    ff1->setZ(strList[3].toDouble());
-    ff1->setHDG(strList[4].toDouble());
-    ff1->setSPD(strList[5].toInt());
-}
+//void FillFileOne(QStringList &strList, FileOne * ff1)
+//{
+//    ff1->setCSG(strList[0]);
+//    ff1->setX(strList[1].toDouble());
+//    ff1->setY(strList[2].toDouble());
+//    ff1->setZ(strList[3].toDouble());
+//    ff1->setHDG(strList[4].toDouble());
+//    ff1->setSPD(strList[5].toInt());
+//}
 
-void FillFileTwo(QStringList &strList, FileTwo * ff2)
-{
-    ff2->setCSG(strList[0]);
-    ff2->setFROM(strList[1]);
-    ff2->setTO(strList[2]);
-    ff2->setSRV(strList[3]);
-    ff2->setTYP(strList[4]);
-}
+//void FillFileTwo(QStringList &strList, FileTwo * ff2)
+//{
+//    ff2->setCSG(strList[0]);
+//    ff2->setFROM(strList[1]);
+//    ff2->setTO(strList[2]);
+//    ff2->setSRV(strList[3]);
+//    ff2->setTYP(strList[4]);
+//}
 
 void WriteOutputFile(QVector<FileOne> & f1v, QVector<FileTwo> & f2v)
 {
-    QString ss = "C:/Users/mcorovic/Desktop/qt_projects/FilesTask01/outputFile.csv";
+    QString ss = "C:/Users/mcorovic/Desktop/qt_projects/FilesTask01/outputFileNew.csv";
     QFile fout(ss);
 
     QVector<QString> outvect;

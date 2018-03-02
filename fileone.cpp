@@ -5,6 +5,16 @@ FileOne::FileOne()
 
 }
 
+FileOne::FileOne(QStringList &strList)
+{
+    this->csg = strList[0];
+    this->x = strList[1].toDouble();
+    this->y = strList[2].toDouble();
+    this->z = strList[3].toDouble();
+    this->hdg = strList[4].toDouble();
+    this->spd = strList[5].toInt();
+}
+
 void FileOne::setCSG(QString ccsg)
 {
     this->csg = ccsg;

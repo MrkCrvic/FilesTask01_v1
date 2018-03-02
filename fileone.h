@@ -3,6 +3,7 @@
 
 #include <QDebug>
 #include <QString>
+#include <QStringList>
 
 
 class FileOne
@@ -14,6 +15,8 @@ private:
 
 public:
     FileOne();
+
+    FileOne(QStringList & strList);
 
     void setCSG(QString ccsg);
     QString getCSG();
